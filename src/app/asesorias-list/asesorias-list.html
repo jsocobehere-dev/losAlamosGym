@@ -1,0 +1,111 @@
+<div class="text-center mb-5 p-4 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #74b9ff, #0984e3); color: white;">
+  <h1 class="display-6 fw-bold text-uppercase m-0 tracking-wide">Planes de Asesorías</h1>
+  <p class="lead mb-0 mt-2 text-white-50">Preparamos atletas profesionales, amateur y recreativos</p>
+</div>
+
+<div class="card shadow-sm border-0 mb-5" style="border-radius: 10px; overflow: hidden;">
+  <div class="card-header text-white fw-bold text-uppercase p-3 d-flex justify-content-between align-items-center" style="background-color: #0984e3;">
+    <span>Servicios Disponibles</span>
+    <span class="badge bg-white text-primary text-uppercase fw-bold">Gym App</span>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light text-uppercase fs-7" style="color: #0984e3;">
+        <tr>
+          <th scope="col" class="ps-4">Imagen</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Profesor</th>
+          <th scope="col">Precio / mes</th>
+          <th scope="col" class="pe-4 text-center">Meses a contratar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (plan of listaPlanes; track plan.id) {
+          <tr [ngClass]="{'table-success fw-bold': plan.enOferta}" style="border-left: 4px solid #74b9ff;">
+            <td class="ps-4">
+              <img [src]="plan.img" [alt]="plan.nombre" class="rounded border shadow-sm" style="width: 55px; height: 55px; object-fit: cover;">
+            </td>
+            <td>
+              <span class="fw-bold d-block fs-5" style="color: #0984e3;">{{ plan.nombre }}</span>
+            </td>
+            <td class="text-muted small" style="max-width: 280px;">{{ plan.descripcion }}</td>
+            <td>
+              <span class="badge text-uppercase py-2 px-3 text-primary" style="background-color: #e3f2fd !important;">
+                👤 {{ plan.profesor }}
+              </span>
+            </td>
+            <td>
+              <span class="fw-bold fs-5 text-dark">{{ plan.precio | currency:'ARS':'symbol':'1.0-0' }}</span>
+            </td>
+            <td class="pe-4 text-center">
+              <div *ngIf="plan.stock > 0" class="d-inline-block">
+                <app-input-number [(quantity)]="plan.cantidad" [max]="plan.stock"></app-input-number>
+              </div>
+              <span *ngIf="plan.stock === 0" class="badge bg-danger rounded-pill px-3 py-2">Sin Cupos</span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="text-center py-5 text-muted fs-5">
+              No hay asesorías disponibles en este momento.
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card shadow border-0 overflow-hidden mb-5" style="border-radius: 12px;">
+  
+  <!-- Cabecera del Formulario -->
+  <div class="card-header text-white p-4" style="background-color: #0984e3; border-bottom: 4px solid #f1c40f;">
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 class="mb-0 fw-bold text-uppercase">Cargar Nueva Asesoría</h3>
+      <span class="text-warning fs-4 fw-bold">★★★</span>
+    </div>
+    <p class="text-white-50 small mb-0 mt-1">Panel de administración</p>
+  </div>
+  
+  <div class="card-body p-4 bg-white">
+    <form [formGroup]="planForm" (ngSubmit)="guardarNuevoPlan()" class="row g-3">
+      
+      <div class="col-md-6">
+        <label for="nombre" class="form-label fw-bold text-uppercase small" style="color: #0984e3;">Nombre del Plan:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control form-control-lg border-2" style="border-color: #74b9ff;" placeholder="Ej: Plan Descenso" />
+        <div *ngIf="planForm.get('nombre')?.invalid && planForm.get('nombre')?.touched" class="text-danger small mt-1 fw-bold">
+          El nombre del plan es obligatorio.
+        </div>
+      </div>
+
+      <!-- Campo Precio -->
+      <div class="col-md-6">
+        <label for="precio" class="form-label fw-bold text-uppercase small" style="color: #0984e3;">Precio Mensual ($):</label>
+        <div class="input-group input-group-lg">
+          <span class="input-group-text text-white border-2 border-end-0" style="background-color: #0984e3; border-color: #74b9ff;">$</span>
+          <input type="number" id="precio" formControlName="precio" class="form-control border-2" style="border-color: #74b9ff;" placeholder="Ej: 15000" />
+        </div>
+        <div *ngIf="planForm.get('precio')?.invalid && planForm.get('precio')?.touched" class="text-danger small mt-1 fw-bold">
+          El precio debe ser un número válido mayor a 0.
+        </div>
+      </div>
+
+      <!-- Campo Descripción -->
+      <div class="col-12">
+        <label for="descripcion" class="form-label fw-bold text-uppercase small" style="color: #0984e3;">Descripción:</label>
+        <textarea id="descripcion" formControlName="descripcion" rows="3" class="form-control border-2" style="border-color: #74b9ff;" placeholder="Ej: Dieta baja en carbohidratos y rutina de fuerza guiada..."></textarea>
+        <div *ngIf="planForm.get('descripcion')?.invalid && planForm.get('descripcion')?.touched" class="text-danger small mt-1 fw-bold">
+          La descripción es obligatoria y debe tener al menos 5 caracteres.
+        </div>
+      </div>
+
+      <div class="col-12 text-end mt-4">
+        <button type="submit" class="btn btn-lg text-white text-uppercase fw-bold px-5 py-3 shadow-sm" style="background-color: #0984e3; border-radius: 6px; border: none;">
+          Guardar Plan
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

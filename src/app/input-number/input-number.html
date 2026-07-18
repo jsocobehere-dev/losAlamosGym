@@ -1,0 +1,6 @@
+<div class="input-group justify-content-center mx-auto" style="max-width: 130px;">
+  <button class="btn btn-dark btn-sm px-3" type="button" (click)="downQuantity()">-</button>
+  <input type="text" class="form-control form-control-sm text-center fw-bold bg-white border-secondary" 
+         [(ngModel)]="quantity" (keyup)="onChange($event)" readonly style="max-width: 50px;">
+  <button class="btn btn-dark btn-sm px-3" type="button" (click)="upQuantity()">+</button>
+</div>

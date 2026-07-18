@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "nombre": "Asesoría en Musculación e Hipertrofia",
+    "descripcion": "Rutina enfocada en el desarrollo de la masa muscular y progresión de cargas.",
+    "profesor": "Prof. Xiomara Garcia",
+    "precio": 10000,
+    "img": "img/musculacion.jpeg",
+    "enOferta": false,
+    "cantidad": 0,
+    "stock": 5
+  },
+  {
+    "id": 2,
+    "nombre": "Entrenamiento Deportivo",
+    "descripcion": "Preparación física integral orientada a deportistas",
+    "profesor": "Prof. Xiomara Garcia y Felipe Socobehere",
+    "precio": 15000,
+    "img": "img/deportistas.jpeg",
+    "enOferta": true,
+    "cantidad": 0,
+    "stock": 3
+  },
+  {
+    "id": 3,
+    "nombre": "Boxeo",
+    "descripcion": "Aprendizaje de técnica de golpeo, desplazamientos y trabajo en saco.",
+    "profesor": "Felipe Socobehere",
+    "precio": 15000,
+    "img": "img/boxeo.jpeg",
+    "enOferta": false,
+    "cantidad": 0,
+    "stock": 8
+  }
+]

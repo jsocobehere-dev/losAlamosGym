@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style="border-bottom: 3px solid #74b9ff;">
+  <div class="container-fluid container">
+    <a class="navbar-brand fw-bold text-uppercase d-flex align-items-center gap-2" routerLink="/asesorias" style="color: #0984e3;">
+  <img src="img/logogym.png" alt="Logo Los Álamos" class="rounded-circle border" style="width: 60px; height: 60px; object-fit: cover;">
+      Los Alamos <span class="text-warning small fs-6">★★★</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="navbar-nav text-uppercase fw-semibold">
+        <a class="nav-link px-3" routerLink="/asesorias" routerLinkActive="active fw-bold" style="color: #0984e3;">Asesorías</a>
+        <a class="nav-link px-3" routerLink="/about" routerLinkActive="active fw-bold" style="color: #0984e3;">Contacto</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <router-outlet></router-outlet>
+</div>
