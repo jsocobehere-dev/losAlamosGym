@@ -15,3 +15,4 @@ Comunicacion entre componentes:
 
 Enlance del proyecto:
 https://github.com/jsocobehere-dev/losAlamosGym
+https://stackblitz.com/~/github.com/jsocobehere-dev/losAlamosGym
